@@ -55,7 +55,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
       
     - name: Build Image
-      uses: mamezou-tech/builpacks-action@master
+      uses: mamezou-tech/buildpacks-action@master
       with:
         image: 'sample-java-maven-app'
         path: 'samples/apps/java-maven/'
