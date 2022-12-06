@@ -36,17 +36,19 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
         
   auth-to-ecr:
-  
+    name: auth to ecr
     runs-on: ubuntu-latest
     
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
+      
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         role-to-assume: arn:aws:iam::788449246974:role/gha-ecr
         aws-region: us-east-1
+        
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
