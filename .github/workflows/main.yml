@@ -55,11 +55,8 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
       
     - name: Build Image
-      uses: mamezou-tech/buildpacks-action@master
-      with:
-        image: 'sample-java-maven-app'
-        path: 'samples/apps/java-maven/'
-        builder: 'cnbs/sample-builder:alpine'
-        buildpacks: 'samples/buildpacks/java-maven samples/buildpacks/hello-processes/ cnbs/sample-package:hello-universe'
+      uses: buildpacks/github-actions/setup-pack@v4.1.0
+
+      
       
   
