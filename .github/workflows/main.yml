@@ -66,6 +66,7 @@ jobs:
         #!/usr/bin/env bash
         set -euo pipefail
         pack build -p . --builder cnbs/sample-builder:alpine builder
+        docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
       shell: bash
       
 
