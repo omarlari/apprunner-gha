@@ -28,7 +28,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        
+
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
@@ -70,7 +70,7 @@ jobs:
       run: |
         #!/usr/bin/env bash
         set -euo pipefail
-        pack build -p . --builder cnbs/sample-builder:alpine $REGISTRY/$REPOSITORY:$IMAGE_TAG
+        pack build -p . --builder gcr.io/buildpacks/builder:v1 $REGISTRY/$REPOSITORY:$IMAGE_TAG --env "GOOGLE_ENTRYPOINT=gunicorn app:app"
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$REGISTRY/$REPOSITORY:$IMAGE_TAG"
       shell: bash
