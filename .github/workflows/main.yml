@@ -68,7 +68,7 @@ jobs:
         set -euo pipefail
         pack build -p . --builder cnbs/sample-builder:alpine $REGISTRY/$REPOSITORY:$IMAGE_TAG
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        echo "::set-output name=image::$REGISTRY/$REPOSITORY:$IMAGE_TAG"
       shell: bash
       
   create-app-runner-service:
