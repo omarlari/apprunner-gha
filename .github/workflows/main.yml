@@ -54,8 +54,17 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
       
-    - name: Build Image
+    - name: setup-pack
       uses: buildpacks/github-actions/setup-pack@v4.1.0
+      
+    - id: package
+      run: |
+        #!/usr/bin/env bash
+        set -euo pipefail
+        pack buildpack package --publish builder
+      shell: bash
+      env:
+        REPO: 788449246974.dkr.ecr.us-east-1.amazonaws.com/builder
 
       
       
