@@ -82,6 +82,10 @@ jobs:
           role-to-assume: arn:aws:iam::788449246974:role/gha-ecr
           aws-region: us-east-1
           
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      
       - name: Deploy to App Runner Image
         id: deploy-apprunner
         uses: awslabs/amazon-app-runner-deploy@main
