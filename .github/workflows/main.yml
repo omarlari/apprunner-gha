@@ -81,7 +81,7 @@ jobs:
       with:
           service: app-runner-git-deploy-service
           image: ${{ steps.build-image.outputs.image }}
-          role-to-assume: arn:aws:iam::788449246974:role/gha-ecr
+          access-role-arn: arn:aws:iam::788449246974:role/gha-ecr
           region: us-east-1
           cpu : 1
           memory : 2
