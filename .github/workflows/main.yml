@@ -71,33 +71,10 @@ jobs:
         echo "::set-output name=image::$REGISTRY/$REPOSITORY:$IMAGE_TAG"
       shell: bash
       
-  create-app-runner-service:
-      name: create app runner service
-      runs-on: ubunutu-latest
-      permissions:
-        id-token: write
-        contents: read
-      
-      steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-      
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: arn:aws:iam::788449246974:role/gha-ecr
-          aws-region: us-east-1
-          
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-      
-      - name: Deploy to App Runner Image
-        id: deploy-apprunner
-        uses: awslabs/amazon-app-runner-deploy@main
-        with:
+    - name: Deploy to App Runner Image
+      id: deploy-apprunner
+      uses: awslabs/amazon-app-runner-deploy@main
+      with:
           service: app-runner-git-deploy-service
           image: ${{ steps.build-image.outputs.image }}
           access-role-arn: arn:aws:iam::788449246974:role/gha-ecr
@@ -107,9 +84,9 @@ jobs:
           # Deprecated: wait-for-service-stability: true
           # The new way to control service stability timeout
           wait-for-service-stability-seconds: 1200
-      
-      - name: App Runner URL
-        run: echo "App runner URL ${{ steps.deploy-apprunner.outputs.service-url }}" 
+
+    - name: App Runner URL
+      run: echo "App runner URL ${{ steps.deploy-apprunner.outputs.service-url }}" 
     
   
       
