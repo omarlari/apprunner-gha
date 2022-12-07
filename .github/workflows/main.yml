@@ -56,15 +56,19 @@ jobs:
       
     - name: setup-pack
       uses: buildpacks/github-actions/setup-pack@v4.1.0
-      
-    - id: package
+
+    - name: Build, Tag, and Push to ECR
+      env:
+        REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        REPOSITORY: builder
+        IMAGE_TAG: ${{ github.sha }}
       run: |
         #!/usr/bin/env bash
         set -euo pipefail
         pack build -p . --builder cnbs/sample-builder:alpine builder
       shell: bash
-      env:
-        REPO: 788449246974.dkr.ecr.us-east-1.amazonaws.com/builder
+      
+
 
       
       
