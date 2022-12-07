@@ -79,7 +79,7 @@ jobs:
       id: deploy-apprunner
       uses: awslabs/amazon-app-runner-deploy@main
       with:
-          service: test-new
+          service: test-new-new
           image: ${{ steps.build-image.outputs.image }}
           access-role-arn: arn:aws:iam::788449246974:role/service-role/AppRunnerECRAccessRole
           region: us-east-1
