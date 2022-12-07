@@ -61,7 +61,7 @@ jobs:
       run: |
         #!/usr/bin/env bash
         set -euo pipefail
-        pack buildpack package --publish builder
+        pack build -p . --builder paketobuildpacks/builder:base builder
       shell: bash
       env:
         REPO: 788449246974.dkr.ecr.us-east-1.amazonaws.com/builder
